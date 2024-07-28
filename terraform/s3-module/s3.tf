@@ -1,19 +1,19 @@
 
-resource "aws_s3_bucket" "aprendendo_terraform" {
+resource "aws_s3_bucket" "ecom" {
   bucket = lower(join("-", [var.bucket_name, var.env]))
 
   tags = var.tags
 }
 
-resource "aws_s3_bucket_ownership_controls" "aprendendo_terraform" {
-  bucket = aws_s3_bucket.aprendendo_terraform.id
+resource "aws_s3_bucket_ownership_controls" "ecom" {
+  bucket = aws_s3_bucket.ecom.id
   rule {
     object_ownership = "BucketOwnerPreferred"
   }
 }
 
-resource "aws_s3_bucket_acl" "aprendendo_terraform" {
-  depends_on = [aws_s3_bucket.aprendendo_terraform]
-  bucket     = aws_s3_bucket.aprendendo_terraform.id
+resource "aws_s3_bucket_acl" "ecom" {
+  depends_on = [aws_s3_bucket.ecom]
+  bucket     = aws_s3_bucket.ecom.id
   acl        = "private"
 }
